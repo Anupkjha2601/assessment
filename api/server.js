@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 3000;
 const PIPEDREAM_ENDPOINT = process.env.PIPEDREAM_ENDPOINT || process.env.PIPEDREAM || null;
 // Paths: server located in assessment/api -> frontend & data in parent folder
 const ROOT_DIR = path.resolve(__dirname); // repository root where server.js now lives
-const DATA_DIR = path.join(ROOT_DIR, 'data');
+const DATA_DIR = path.join(ROOT_DIR, '../data');
 
 // Helper: load JSON data from data folder with fallback
 function loadJson(fileName, fallback = null) {
