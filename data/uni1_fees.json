@@ -1,0 +1,8 @@
+{
+  "courses": [
+    { "name": "B.Tech (CSE)", "fee_range": "₹1.5L – ₹2.5L per year" },
+    { "name": "MBA", "fee_range": "₹2.0L – ₹3.5L per year" },
+    { "name": "B.Des", "fee_range": "₹1.2L – ₹1.8L per year" }
+  ],
+  "note": "Fees may vary based on specialization & scholarships."
+}

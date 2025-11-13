@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brightfield University — Admissions</title>
+
+  <!-- Embedded styles (responsive) -->
+  <style>
+    :root{--accent:#0b6cf0;--muted:#666;--bg:#f6f8fb}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#111; background:var(--bg); -webkit-font-smoothing:antialiased}
+    .header{background:linear-gradient(90deg,var(--accent),#3aa0ff); color:#fff; padding:28px 16px}
+    .container{max-width:1000px;margin:18px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 360px; gap:24px; align-items:start}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} .aside-sticky{position:static} }
+    .card{background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.06); padding:18px}
+    h1,h2,h3{margin:0 0 10px}
+    p,li{color:#222;line-height:1.45}
+    ul{padding-left:18px;margin:8px 0}
+    .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer;text-decoration:none}
+    .btn.secondary{background:#eef6ff;color:var(--accent);border:1px solid rgba(11,108,240,0.12)}
+    label{display:block;margin:10px 0 6px;font-weight:600;font-size:14px}
+    .input, select{width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:6px;font-size:14px}
+    .muted{color:var(--muted);font-size:14px}
+    .message-area{margin-top:10px}
+    .success{background:#e6ffed;border:1px solid #2db76b;padding:10px;border-radius:6px;color:#064b2a}
+    .error{background:#ffecee;border:1px solid #ff5a66;padding:10px;border-radius:6px;color:#7a1b1b}
+    .small{font-size:13px}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
+    .modal{background:#fff;padding:18px;border-radius:10px;max-width:560px;width:100%;box-shadow:0 12px 40px rgba(2,6,23,0.2)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center}
+    .close-btn{background:transparent;border:0;font-weight:700;cursor:pointer;color:#444}
+    .footer{padding:14px;text-align:center;color:#666;font-size:13px;margin-top:24px}
+    /* small helper for sticky aside on desktop */
+    .aside-sticky{position:sticky;top:20px}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Brightfield University</h1>
+      <p class="muted">Private University — Engineering | Management | Design</p>
+    </div>
+  </header>
+
+  <main class="container" style="margin-bottom:30px">
+    <div class="grid">
+      <!-- Main content -->
+      <section class="card" aria-labelledby="overview-title">
+        <h2 id="overview-title">Overview</h2>
+        <p>Brightfield University is a private university focused on industry-aligned programmes, modern labs, and placement-oriented training. We partner with recruiters and run hands-on projects to make students industry-ready.</p>
+
+        <h3>Courses</h3>
+        <ul>
+          <li>B.Tech (CSE, ECE) — 4 years</li>
+          <li>MBA — 2 years</li>
+          <li>B.Des / M.Des — Design programs</li>
+        </ul>
+
+        <h3>Placements</h3>
+        <p>Dedicated placement cell with 100+ recruiters. Average package: ₹6.2 LPA; Top offers up to ₹24 LPA.</p>
+
+        <h3>Facilities</h3>
+        <ul>
+          <li>State-of-the-art labs & workshops</li>
+          <li>On-campus hostels & mess</li>
+          <li>Sports, transport & incubator</li>
+        </ul>
+
+        <div class="ctas" style="margin-top:14px">
+          <button class="btn" id="fees-btn" data-fees="university1">Check Course-wise Fees</button>
+          <a href="#" class="btn secondary" id="download-btn">Download Brochure</a>
+          <a href="#apply" class="btn" id="apply-now">Apply Now</a>
+        </div>
+      </section>
+
+      <!-- Sidebar / Enquiry -->
+      <aside class="card aside-sticky" aria-labelledby="enquire-title">
+        <h3 id="enquire-title">Enquire Now</h3>
+
+        <form id="lead-form" class="lead-form" data-uni="university1" novalidate>
+          <label for="name">Full Name</label>
+          <input id="name" name="name" class="input" type="text" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" class="input" type="email" required />
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" class="input" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" required />
+
+          <label for="state">State</label>
+          <select id="state" name="state" required>
+            <option value="">Select state</option>
+            <option>Delhi</option>
+            <option>Maharashtra</option>
+            <option>Karnataka</option>
+            <option>Uttar Pradesh</option>
+          </select>
+
+          <label for="course">Course Interested</label>
+          <select id="course" name="course" required>
+            <option value="">Select</option>
+            <option>B.Tech (CSE)</option>
+            <option>MBA</option>
+            <option>B.Des</option>
+          </select>
+
+          <label for="intake">Intake Year</label>
+          <select id="intake" name="intake" required>
+            <option value="">Select</option>
+            <option>2025</option>
+            <option>2026</option>
+          </select>
+
+          <label style="font-weight:600; margin-top:8px;">
+            <input type="checkbox" id="consent" name="consent" /> I agree to be contacted about admissions.
+          </label>
+
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center">
+            <button type="submit" class="btn">Submit Enquiry</button>
+            <div class="muted small">We respect your privacy.</div>
+          </div>
+
+          <div class="message-area" id="message-area" aria-live="polite"></div>
+        </form>
+      </aside>
+    </div>
+
+    <!-- Additional section -->
+    <section id="apply" class="card" style="margin-top:18px">
+      <h3>How to Apply</h3>
+      <p>Click Apply Now or fill the enquiry form. Our admissions team will contact you to guide you through the admissions steps and document checklist.</p>
+    </section>
+  </main>
+
+  <!-- Modal (fees) -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title" style="margin:0">Course-wise Fees</h3>
+        <button class="close-btn" id="modal-close" aria-label="Close modal">✕</button>
+      </div>
+      <div id="modal-body" style="margin-top:12px">
+        <p class="small muted">Loading...</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© Brightfield University — Sample Landing Page</footer>
+
+  <!-- Embedded script -->
+  <script>
+    /***********************
+     * CONFIG
+     ***********************/
+    // *** IMPORTANT: REPLACE with your Pipedream HTTP listener URL (example: https://en6m5x9yz7w0f.x.pipedream.net) ***
+    const PIPEDREAM_ENDPOINT = 'https://eomuy8l3v75do4g.m.pipedream.net'; // <<-- REPLACE THIS
+
+    // Local fallback fees JSON (used if fetch to /api/... fails)
+    const FALLBACK_FEES = {
+      "courses": [
+        {"name":"B.Tech (CSE)", "fee_range":"₹1.5L - ₹2.5L per year"},
+        {"name":"MBA", "fee_range":"₹2.0L - ₹3.5L per year"},
+        {"name":"B.Des", "fee_range":"₹1.2L - ₹1.8L per year"}
+      ],
+      "note":"Fees shown are indicative and may vary by specialization."
+    };
+
+    /***********************
+     * Helpers & validation
+     ***********************/
+    function isValidPhone(phone) {
+      // Check digit by digit to avoid mistakes: allow only 10 digits
+      return /^\d{10}$/.test(phone);
+    }
+
+    function el(sel){ return document.querySelector(sel) }
+    function showMessage(text, type = 'success') {
+      const area = el('#message-area');
+      area.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = (type === 'success') ? 'success' : 'error';
+      div.textContent = text;
+      area.appendChild(div);
+    }
+
+    /***********************
+     * Lead form submission
+     ***********************/
+    async function handleLeadSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const uni = form.dataset.uni || 'university1';
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const state = form.state.value.trim();
+      const course = form.course.value.trim();
+      const intake = form.intake.value.trim();
+      const consent = form.consent.checked;
+
+      // Basic validations
+      if (!name || !email || !phone || !state || !course || !intake || !consent) {
+        showMessage('Please fill all fields and accept consent.', 'error');
+        return;
+      }
+      if (!isValidPhone(phone)) {
+        showMessage('Phone must be 10 digits (India).', 'error');
+        return;
+      }
+
+      const payload = {university: uni, name, email, phone, state, course, intake, consent, ts: new Date().toISOString()};
+
+      // Try Pipedream first
+      try {
+        const res = await fetch(PIPEDREAM_ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          showMessage('Thanks! Your enquiry was sent successfully.');
+          form.reset();
+        } else {
+          // non-OK but reached endpoint
+          showMessage('Enquiry sent (non-OK response). We will follow up shortly.');
+          form.reset();
+        }
+        return;
+      } catch (err) {
+        console.warn('Pipedream POST failed:', err);
+      }
+
+      // Fallback: try posting to local /api/leads (if you host an API)
+      try {
+        const fallbackRes = await fetch('/api/leads', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        if (fallbackRes.ok) {
+          showMessage('Saved locally (Pipedream failed).');
+          form.reset();
+          return;
+        }
+      } catch (err) {
+        console.warn('Local POST failed:', err);
+      }
+
+      // Final fallback: inform user
+      showMessage('Failed to send lead. Please try again later or contact admissions directly.', 'error');
+    }
+
+    // Attach form listener
+    document.addEventListener('DOMContentLoaded', function(){
+      const form = el('#lead-form');
+      form.addEventListener('submit', handleLeadSubmit);
+    });
+
+    /***********************
+     * Modal / Fees logic
+     ***********************/
+    const modalBackdrop = el('#modal-backdrop');
+    const modalBody = el('#modal-body');
+    const feesBtn = el('#fees-btn');
+    const modalClose = el('#modal-close');
+
+    async function openFeesModal(uniSlug) {
+      modalBody.innerHTML = '<p class="small muted">Loading fee ranges...</p>';
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+
+      // Try fetch from server API first (expected path: /api/university1/fees)
+      try {
+        const resp = await fetch('/api/' + uniSlug + '/fees');
+        if (resp.ok) {
+          const data = await resp.json();
+          renderFees(data);
+          return;
+        }
+        // continue to fallback if non-ok
+      } catch (err) {
+        console.warn('Fetch /api fees failed:', err);
+      }
+
+      // Fallback to embedded JSON
+      renderFees(FALLBACK_FEES);
+    }
+
+    function renderFees(data) {
+      if (!data || !data.courses) {
+        modalBody.innerHTML = '<p class="error">No fee data available.</p>';
+        return;
+      }
+      let html = '<ul style="padding-left:16px;margin:6px 0">';
+      data.courses.forEach(c => {
+        html += `<li style="margin:6px 0"><strong>${escapeHtml(c.name)}</strong> — ${escapeHtml(c.fee_range)}</li>`;
+      });
+      html += '</ul>';
+      if (data.note) html += `<p class="small muted" style="margin-top:8px">${escapeHtml(data.note)}</p>`;
+      modalBody.innerHTML = html;
+    }
+
+    function closeModal() {
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    // basic escape to avoid injection if using remote data
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]) });
+    }
+
+    // attach clicks
+    document.addEventListener('click', function(e){
+      if (e.target.matches('[data-fees], #fees-btn')) {
+        e.preventDefault();
+        const slug = e.target.dataset.fees || 'university1';
+        openFeesModal(slug);
+      }
+      if (e.target === modalBackdrop || e.target === modalClose) {
+        closeModal();
+      }
+    });
+
+    // keyboard accessibility: close on ESC
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /***********************
+     * Download brochure link: sample behavior (downloads a generated brochure)
+     ***********************/
+    document.getElementById('download-btn').addEventListener('click', function(e){
+      e.preventDefault();
+      // For demo: generate a small text file as brochure
+      const brochureText = 'Brightfield University\\nCourses:\\n- B.Tech (CSE)\\n- MBA\\n- B.Des\\nContact: admissions@brightfield.example';
+      const blob = new Blob([brochureText], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Brightfield-Brochure.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

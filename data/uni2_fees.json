@@ -1,0 +1,7 @@
+{
+  "courses": [
+    { "name": "BBA", "fee_range": "₹60K – ₹1.2L per year" },
+    { "name": "M.Sc Data Analytics", "fee_range": "₹1.6L – ₹2.8L per year" }
+  ],
+  "note": "Final fees depend on scholarships."
+}
