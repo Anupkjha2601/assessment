@@ -22,6 +22,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const fetch = require('node-fetch'); // add this near the other requires
+
 
 const app = express();
 app.use(cors());
@@ -138,11 +140,11 @@ app.post('/api/leads', async (req, res) => {
   // Try to forward to Pipedream (if configured) but don't fail the request if forward fails
  if (PIPEDREAM_ENDPOINT) {
   try {
-    const resp = await fetcher(PIPEDREAM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead)
-    });
+    const resp = await fetch(PIPEDREAM_ENDPOINT, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(lead)
+});
     if (!resp.ok) {
       console.warn('Forward to Pipedream returned non-OK:', resp.status);
     }
